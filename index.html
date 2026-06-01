@@ -2,149 +2,248 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <title>John-Rex Spivey | EEI Strategic Advisors</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --navy: #0d1f3c;
-    --navy-mid: #1a3558;
-    --navy-light: #2a4a72;
-    --gold: #c9963e;
-    --gold-light: #e8b96a;
-    --cream: #f8f5f0;
-    --off-white: #fdfcfa;
-    --text-dark: #1a1a1a;
-    --text-mid: #4a4a4a;
-    --text-muted: #7a7a7a;
-    --border: rgba(201, 150, 62, 0.25);
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy: #0d1f3c;
+  --navy-mid: #1a3558;
+  --navy-light: #2a4a72;
+  --gold: #c9963e;
+  --gold-light: #e8b96a;
+  --cream: #f8f5f0;
+  --off-white: #fdfcfa;
+  --text-dark: #1a1a1a;
+  --text-mid: #4a4a4a;
+  --text-muted: #7a7a7a;
+  --border: rgba(201,150,62,0.25);
+}
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { font-family: 'DM Sans', sans-serif; background: var(--off-white); color: var(--text-dark); font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+img { display: block; max-width: 100%; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(13,31,60,0.97); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(201,150,62,0.3);
+  padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; height: 60px;
+}
+.nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 600; color: var(--gold-light); letter-spacing: 0.04em; text-decoration: none; }
+.nav-links { display: flex; gap: 1.5rem; list-style: none; }
+.nav-links a { text-decoration: none; color: rgba(255,255,255,0.75); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100svh; background: var(--navy);
+  display: grid; grid-template-rows: 1fr auto; position: relative; overflow: hidden;
+}
+.hero-photo {
+  position: relative; width: 100%; height: 55vw; min-height: 240px; max-height: 420px; overflow: hidden;
+}
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.hero-photo::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(13,31,60,0.25) 0%, rgba(13,31,60,0.6) 100%);
+}
+.hero-left {
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 2rem 1.5rem 3rem; padding-bottom: max(3rem, env(safe-area-inset-bottom));
+}
+.hero-eyebrow {
+  font-size: 0.68rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;
+}
+.hero-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); flex-shrink: 0; }
+.hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.2rem, 12vw, 5.5rem); font-weight: 300; color: #fff; line-height: 1.0; margin-bottom: 0.4rem; }
+.hero h1 em { font-style: italic; color: var(--gold-light); }
+.hero-subtitle { font-family: 'Cormorant Garamond', serif; font-size: clamp(1rem, 4vw, 1.3rem); font-weight: 300; color: rgba(255,255,255,0.65); margin-bottom: 1.5rem; font-style: italic; }
+.hero-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 2rem; }
+.hero-tag { padding: 0.3rem 0.75rem; border: 1px solid rgba(201,150,62,0.4); color: rgba(255,255,255,0.65); font-size: 0.68rem; letter-spacing: 0.07em; text-transform: uppercase; }
+.hero-cta {
+  display: inline-flex; align-items: center; background: var(--gold); color: var(--navy);
+  text-decoration: none; padding: 0.85rem 1.75rem; font-size: 0.78rem; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase; width: fit-content; -webkit-tap-highlight-color: transparent;
+}
+.hero-deco { display: none; }
+
+/* ── RIBBON ── */
+.service-ribbon {
+  background: var(--gold); padding: 0.85rem 1.5rem;
+  display: flex; gap: 1.5rem; align-items: center; overflow-x: auto; -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.service-ribbon::-webkit-scrollbar { display: none; }
+.ribbon-item { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); white-space: nowrap; flex-shrink: 0; }
+.ribbon-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--navy); opacity: 0.4; flex-shrink: 0; }
+
+/* ── SECTIONS ── */
+section { padding: 4rem 0; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+.section-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+.section-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); flex-shrink: 0; }
+.section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 9vw, 3.5rem); font-weight: 300; line-height: 1.1; color: var(--navy); margin-bottom: 1rem; }
+.section-title em { font-style: italic; color: var(--gold); }
+
+/* ── ABOUT ── */
+#about { background: var(--cream); }
+.about-grid { display: flex; flex-direction: column; gap: 2.5rem; }
+.about-body { color: var(--text-mid); font-size: 1rem; line-height: 1.85; margin-bottom: 1.25rem; }
+.about-quote { border-left: 3px solid var(--gold); padding: 1.25rem 1.5rem; margin: 2rem 0; background: white; }
+.about-quote p { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 300; font-style: italic; color: var(--navy); line-height: 1.5; margin-bottom: 0.5rem; }
+.about-quote cite { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); font-style: normal; }
+.about-photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+.about-photo-grid .photo-tall { grid-column: 1 / -1; height: 56vw; max-height: 300px; overflow: hidden; }
+.about-photo-grid .photo-sq { height: 40vw; max-height: 200px; overflow: hidden; }
+.about-photo-grid img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ── CREDENTIALS ── */
+#credentials { background: var(--navy); color: white; }
+#credentials .section-title { color: white; }
+.creds-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 2rem; }
+.cred-card { background: var(--navy-mid); padding: 1.5rem; border: 1px solid rgba(201,150,62,0.15); }
+.cred-number { font-family: 'Cormorant Garamond', serif; font-size: 2.75rem; font-weight: 300; color: var(--gold); line-height: 1; margin-bottom: 0.4rem; }
+.cred-label { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 0.6rem; }
+.cred-desc { font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.65; }
+
+/* ── TIMELINE ── */
+#service { background: var(--off-white); }
+.service-inner { display: flex; flex-direction: column; gap: 2.5rem; }
+.timeline { position: relative; padding-left: 2rem; }
+.timeline::before { content: ''; position: absolute; left: 0; top: 0.5rem; bottom: 0; width: 1px; background: var(--border); }
+.timeline-item { position: relative; margin-bottom: 2.25rem; }
+.timeline-item::before { content: ''; position: absolute; left: -2rem; top: 0.45rem; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+.timeline-year { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.25rem; }
+.timeline-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: var(--navy); margin-bottom: 0.15rem; }
+.timeline-org { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.04em; color: var(--text-muted); margin-bottom: 0.5rem; text-transform: uppercase; }
+.timeline-desc { font-size: 0.88rem; color: var(--text-mid); line-height: 1.75; }
+.service-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+.sp { overflow: hidden; }
+.sp img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.sp-tall { height: 50vw; max-height: 280px; }
+.sp-short { height: 36vw; max-height: 200px; }
+
+/* ── GALLERY ── */
+#gallery { background: var(--cream); }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+.gallery-item { position: relative; overflow: hidden; height: 44vw; max-height: 220px; }
+.gallery-item:first-child { grid-column: 1 / -1; height: 60vw; max-height: 320px; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; -webkit-tap-highlight-color: transparent; }
+.gallery-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(13,31,60,0.8)); padding: 1.25rem 0.75rem 0.6rem; color: rgba(255,255,255,0.9); font-size: 0.68rem; letter-spacing: 0.05em; text-transform: uppercase; }
+
+/* ── EEI ── */
+#eei { background: var(--navy); color: white; }
+#eei .section-title { color: white; }
+.eei-intro { font-size: 1rem; color: rgba(255,255,255,0.6); line-height: 1.85; margin-bottom: 2.5rem; }
+.eei-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-bottom: 2.5rem; }
+.eei-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(201,150,62,0.2); padding: 1.5rem; }
+.eei-card-num { font-family: 'Cormorant Garamond', serif; font-size: 1.75rem; color: var(--gold); font-weight: 300; margin-bottom: 0.4rem; }
+.eei-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: white; margin-bottom: 0.5rem; }
+.eei-card p { font-size: 0.88rem; color: rgba(255,255,255,0.55); line-height: 1.75; }
+.partner-logos { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; }
+.partner-label { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 1rem; }
+.partner-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.partner-tag { padding: 0.35rem 0.75rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); font-size: 0.72rem; letter-spacing: 0.04em; }
+
+/* ── ARKANSAS ── */
+#arkansas { background: var(--off-white); }
+.arkansas-grid { display: flex; flex-direction: column; gap: 2.5rem; }
+.pillars { display: flex; flex-direction: column; gap: 1.25rem; }
+.pillar { display: flex; gap: 1.25rem; align-items: flex-start; }
+.pillar-num { font-family: 'Cormorant Garamond', serif; font-size: 1.75rem; font-weight: 300; color: var(--gold); line-height: 1; flex-shrink: 0; width: 1.75rem; text-align: right; }
+.pillar-content h4 { font-weight: 500; font-size: 0.9rem; color: var(--navy); margin-bottom: 0.2rem; }
+.pillar-content p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; }
+
+/* ── CONTACT ── */
+#contact { background: var(--navy); color: white; text-align: center; padding: 5rem 0; padding-bottom: max(5rem, env(safe-area-inset-bottom)); }
+#contact .section-label { justify-content: center; }
+#contact .section-label::before { display: none; }
+#contact .section-title { color: white; margin: 0 auto 1.5rem; }
+.contact-sub { font-size: 0.95rem; color: rgba(255,255,255,0.5); max-width: 420px; margin: 0 auto 2.5rem; line-height: 1.8; }
+.contact-links { display: flex; flex-direction: column; gap: 1rem; align-items: center; }
+.contact-link { display: block; padding: 1rem 2rem; text-decoration: none; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; width: min(320px, 100%); text-align: center; -webkit-tap-highlight-color: transparent; }
+.contact-link.primary { background: var(--gold); color: var(--navy); }
+.contact-link.secondary { border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.7); }
+
+/* ── FOOTER ── */
+footer {
+  background: #080f1e; color: rgba(255,255,255,0.3);
+  padding: 2rem 1.5rem; padding-bottom: max(2rem, env(safe-area-inset-bottom));
+  display: flex; flex-direction: column; gap: 0.4rem; align-items: center; text-align: center;
+  font-size: 0.72rem; letter-spacing: 0.06em;
+}
+.footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; color: rgba(255,255,255,0.4); margin-bottom: 0.2rem; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+.hero-eyebrow { animation: fadeUp 0.7s ease 0.2s both; }
+.hero h1       { animation: fadeUp 0.7s ease 0.35s both; }
+.hero-subtitle { animation: fadeUp 0.7s ease 0.5s both; }
+.hero-tags     { animation: fadeUp 0.7s ease 0.65s both; }
+.hero-cta      { animation: fadeUp 0.7s ease 0.8s both; }
+
+/* ══════════════════════════════════════
+   TABLET & DESKTOP UPGRADES
+   ══════════════════════════════════════ */
+@media (min-width: 640px) {
+  nav { padding: 0 2.5rem; height: 64px; }
+  section { padding: 5.5rem 0; }
+  .container { padding: 0 2.5rem; }
+  .eei-grid { grid-template-columns: 1fr 1fr; }
+  .contact-links { flex-direction: row; justify-content: center; }
+  .contact-link { width: auto; }
+  footer { flex-direction: row; justify-content: space-between; text-align: left; padding: 2.5rem; }
+}
+
+@media (min-width: 900px) {
+  nav { padding: 0 4rem; height: 68px; }
+  .hero {
+    grid-template-rows: none;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
   }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--off-white); color: var(--text-dark); font-size: 16px; line-height: 1.7; }
-
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(13,31,60,0.97); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(201,150,62,0.3); padding: 0 4rem; display: flex; align-items: center; justify-content: space-between; height: 68px; }
-  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--gold-light); letter-spacing: 0.04em; text-decoration: none; }
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-  .nav-links a { text-decoration: none; color: rgba(255,255,255,0.75); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--gold-light); }
-
-  .hero { min-height: 100vh; background: var(--navy); display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; }
-  .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 10rem 4rem 6rem 6rem; position: relative; z-index: 2; }
-  .hero-eyebrow { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem; }
-  .hero-eyebrow::before { content: ''; display: block; width: 40px; height: 1px; background: var(--gold); }
-  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 5.5rem; font-weight: 300; color: #fff; line-height: 1.0; margin-bottom: 0.5rem; }
-  .hero h1 em { font-style: italic; color: var(--gold-light); }
-  .hero-subtitle { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 300; color: rgba(255,255,255,0.6); margin-bottom: 2.5rem; font-style: italic; }
-  .hero-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 3rem; }
-  .hero-tag { padding: 0.35rem 1rem; border: 1px solid rgba(201,150,62,0.4); color: rgba(255,255,255,0.65); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
-  .hero-cta { display: inline-flex; align-items: center; gap: 0.75rem; background: var(--gold); color: var(--navy); text-decoration: none; padding: 1rem 2rem; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; transition: background 0.2s; width: fit-content; }
-  .hero-cta:hover { background: var(--gold-light); }
-  .hero-right { position: relative; overflow: hidden; }
-  .hero-right img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-  .hero-deco { position: absolute; bottom: 3rem; left: 6rem; display: flex; align-items: center; gap: 1rem; color: rgba(255,255,255,0.25); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; }
+  .hero-photo { position: absolute; right: 0; top: 0; bottom: 0; left: 50%; height: 100%; max-height: none; }
+  .hero-photo::after { background: linear-gradient(to right, rgba(13,31,60,0.3) 0%, transparent 60%); }
+  .hero-left { padding: 10rem 4rem 6rem 6rem; justify-content: center; }
+  .hero-deco { display: flex; position: absolute; bottom: 3rem; left: 6rem; align-items: center; gap: 1rem; color: rgba(255,255,255,0.25); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; }
   .hero-deco::before { content: ''; width: 60px; height: 1px; background: rgba(255,255,255,0.2); }
-
-  .service-ribbon { background: var(--gold); padding: 1rem 4rem; display: flex; gap: 4rem; align-items: center; overflow: hidden; flex-wrap: wrap; }
-  .ribbon-item { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--navy); white-space: nowrap; }
-  .ribbon-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--navy); opacity: 0.4; }
-
   section { padding: 7rem 0; }
-  .container { max-width: 1200px; margin: 0 auto; padding: 0 4rem; }
-  .section-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem; }
-  .section-label::before { content: ''; display: block; width: 30px; height: 1px; background: var(--gold); }
-  .section-title { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; line-height: 1.1; color: var(--navy); margin-bottom: 1rem; }
-  .section-title em { font-style: italic; color: var(--gold); }
+  .container { padding: 0 4rem; }
+  .about-grid { flex-direction: row; gap: 5rem; }
+  .about-grid > * { flex: 1; }
+  .about-photo-grid .photo-tall { height: 280px; max-height: none; }
+  .about-photo-grid .photo-sq { height: 200px; max-height: none; }
+  .creds-grid { grid-template-columns: repeat(3, 1fr); }
+  .service-inner { flex-direction: row; gap: 5rem; align-items: start; }
+  .service-inner .timeline { flex: 1.2; }
+  .service-inner .service-photos { flex: 0.8; }
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 280px 280px;
+    gap: 1rem;
+  }
+  .gallery-item { height: auto; max-height: none; }
+  .gallery-item:first-child { grid-column: 1; grid-row: 1 / 3; height: auto; max-height: none; }
+  .arkansas-grid { flex-direction: row; gap: 6rem; }
+  .arkansas-grid > * { flex: 1; }
+  .sp-tall { height: 320px; max-height: none; }
+  .sp-short { height: 220px; max-height: none; }
+  footer { padding: 2.5rem 4rem; }
+}
 
-  #about { background: var(--cream); }
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-  .about-body { color: var(--text-mid); font-size: 1.05rem; line-height: 1.85; margin-bottom: 1.5rem; }
-  .about-quote { border-left: 3px solid var(--gold); padding: 1.5rem 2rem; margin: 2.5rem 0; background: white; }
-  .about-quote p { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; font-style: italic; color: var(--navy); line-height: 1.5; margin-bottom: 0.5rem; }
-  .about-quote cite { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); font-style: normal; }
-  .about-photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
-  .about-photo-grid .photo-tall { grid-column: 1 / -1; height: 280px; overflow: hidden; }
-  .about-photo-grid .photo-sq { height: 200px; overflow: hidden; }
-  .about-photo-grid img { width: 100%; height: 100%; object-fit: cover; }
-
-  #credentials { background: var(--navy); color: white; }
-  #credentials .section-title { color: white; }
-  .creds-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 4rem; }
-  .cred-card { background: var(--navy-mid); padding: 2.5rem; border: 1px solid rgba(201,150,62,0.15); transition: border-color 0.2s; }
-  .cred-card:hover { border-color: rgba(201,150,62,0.4); }
-  .cred-number { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; color: var(--gold); line-height: 1; margin-bottom: 0.5rem; }
-  .cred-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 1rem; }
-  .cred-desc { font-size: 0.9rem; color: rgba(255,255,255,0.65); line-height: 1.7; }
-
-  #service { background: var(--off-white); }
-  .service-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
-  .timeline { position: relative; padding-left: 2.5rem; }
-  .timeline::before { content: ''; position: absolute; left: 0; top: 0.5rem; bottom: 0; width: 1px; background: var(--border); }
-  .timeline-item { position: relative; margin-bottom: 3rem; }
-  .timeline-item::before { content: ''; position: absolute; left: -2.5rem; top: 0.45rem; width: 9px; height: 9px; border-radius: 50%; background: var(--gold); }
-  .timeline-year { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
-  .timeline-title { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 400; color: var(--navy); margin-bottom: 0.2rem; }
-  .timeline-org { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 0.6rem; text-transform: uppercase; }
-  .timeline-desc { font-size: 0.9rem; color: var(--text-mid); line-height: 1.75; }
-  .service-photos { display: grid; grid-template-columns: 1fr; gap: 1rem; }
-  .sp { overflow: hidden; }
-  .sp img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .sp-tall { height: 320px; }
-  .sp-short { height: 220px; }
-
-  #gallery { background: var(--cream); }
-  .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 300px 300px; gap: 1rem; margin-top: 4rem; }
-  .gallery-item { position: relative; overflow: hidden; }
-  .gallery-item:first-child { grid-column: 1; grid-row: 1 / 3; }
-  .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
-  .gallery-item:hover img { transform: scale(1.04); }
-  .gallery-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(13,31,60,0.8)); padding: 1.5rem 1rem 0.75rem; color: rgba(255,255,255,0.9); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; }
-
-  #eei { background: var(--navy); color: white; }
-  #eei .section-title { color: white; }
-  .eei-intro { font-size: 1.05rem; color: rgba(255,255,255,0.6); max-width: 680px; line-height: 1.85; margin-bottom: 3.5rem; }
-  .eei-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 3.5rem; }
-  .eei-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(201,150,62,0.2); padding: 2rem; transition: border-color 0.2s; }
-  .eei-card:hover { border-color: rgba(201,150,62,0.5); }
-  .eei-card-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--gold); font-weight: 300; margin-bottom: 0.5rem; }
-  .eei-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; color: white; margin-bottom: 0.6rem; }
-  .eei-card p { font-size: 0.88rem; color: rgba(255,255,255,0.5); line-height: 1.75; }
-  .partner-logos { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2.5rem; }
-  .partner-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 1.25rem; }
-  .partner-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-  .partner-tag { padding: 0.4rem 0.9rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); font-size: 0.75rem; letter-spacing: 0.05em; }
-
-  #arkansas { background: var(--off-white); }
-  .arkansas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
-  .pillars { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
-  .pillar { display: flex; gap: 1.5rem; align-items: flex-start; }
-  .pillar-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--gold); line-height: 1; flex-shrink: 0; width: 2rem; text-align: right; }
-  .pillar-content h4 { font-weight: 500; font-size: 0.9rem; color: var(--navy); margin-bottom: 0.25rem; }
-  .pillar-content p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.7; }
-
-  #contact { background: var(--navy); color: white; text-align: center; padding: 8rem 0; }
-  #contact .section-label { justify-content: center; }
-  #contact .section-label::before { display: none; }
-  #contact .section-title { color: white; font-size: 4rem; max-width: 700px; margin: 0 auto 2rem; }
-  .contact-sub { font-size: 1rem; color: rgba(255,255,255,0.5); max-width: 500px; margin: 0 auto 3rem; line-height: 1.8; }
-  .contact-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
-  .contact-link { display: inline-block; padding: 1rem 2.5rem; text-decoration: none; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.2s; }
-  .contact-link.primary { background: var(--gold); color: var(--navy); }
-  .contact-link.primary:hover { background: var(--gold-light); }
-  .contact-link.secondary { border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.7); }
-  .contact-link.secondary:hover { border-color: var(--gold); color: var(--gold-light); }
-
-  footer { background: #080f1e; color: rgba(255,255,255,0.3); padding: 2.5rem 4rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; letter-spacing: 0.08em; }
-  footer .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(255,255,255,0.4); }
-
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-  .hero-left > * { animation: fadeUp 0.8s ease forwards; opacity: 0; }
-  .hero-left > *:nth-child(1) { animation-delay: 0.2s; }
-  .hero-left > *:nth-child(2) { animation-delay: 0.35s; }
-  .hero-left > *:nth-child(3) { animation-delay: 0.5s; }
-  .hero-left > *:nth-child(4) { animation-delay: 0.65s; }
-  .hero-left > *:nth-child(5) { animation-delay: 0.8s; }
+@media (min-width: 1200px) {
+  .hero h1 { font-size: 5.5rem; }
+}
 </style>
 </head>
 <body>
@@ -155,13 +254,15 @@
     <li><a href="#about">About</a></li>
     <li><a href="#service">Service</a></li>
     <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#eei">EEI Advisors</a></li>
-    <li><a href="#arkansas">Arkansas</a></li>
+    <li><a href="#eei">EEI</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
 <section class="hero">
+  <div class="hero-photo">
+    <img src="IMG_2175.jpeg" alt="John-Rex Spivey speaking">
+  </div>
   <div class="hero-left">
     <div class="hero-eyebrow">Founder &amp; Strategic Advisor</div>
     <h1>John-Rex<br><em>Spivey</em></h1>
@@ -175,9 +276,6 @@
     </div>
     <a href="#about" class="hero-cta">Learn More &darr;</a>
     <div class="hero-deco">Engage &middot; Elevate &middot; Inspire</div>
-  </div>
-  <div class="hero-right">
-    <img src="IMG_2175.jpeg" style="width:100%;height:100%;object-fit:cover;object-position:top center;" alt="IMG_2175.jpeg">
   </div>
 </section>
 
@@ -225,12 +323,12 @@
     <div class="section-label">By the Numbers</div>
     <h2 class="section-title">A Career of<br><em>Distinction</em></h2>
     <div class="creds-grid">
-      <div class="cred-card"><div class="cred-number">2013</div><div class="cred-label">USNA Graduation</div><div class="cred-desc">Elected President of the Class of 2013. Varsity letter winner on the Championship Sprint Football team. Eagle Scout.</div></div>
-      <div class="cred-card"><div class="cred-number">2&times;</div><div class="cred-label">Combat Deployments</div><div class="cred-desc">Deployed twice in support of Operation Odyssey Lightning as a Navy Helicopter Pilot with HSC-22. Humanitarian aid and disaster-relief missions.</div></div>
-      <div class="cred-card"><div class="cred-number">116th</div><div class="cred-label">Congress</div><div class="cred-desc">Navy Office of Legislative Affairs Fellowship &mdash; Defense Fellow for Senator Susan Collins (R-ME), supporting DoD legislation and veterans&rsquo; affairs.</div></div>
-      <div class="cred-card"><div class="cred-number">5</div><div class="cred-label">NATO Allies</div><div class="cred-desc">U.S. spokesperson on a NATO working group with five primary allied nations at the Office of the Chief of Naval Personnel.</div></div>
-      <div class="cred-card"><div class="cred-number">1st</div><div class="cred-label">NJOC Director</div><div class="cred-desc">Inaugural Director of the Naval Junior Officer Counsel &mdash; the Navy&rsquo;s first cross-designator junior officer organization.</div></div>
-      <div class="cred-card"><div class="cred-number">&#9733;</div><div class="cred-label">USNA Alumni Trustee</div><div class="cred-desc">Youngest-ever trustee on the USNA Alumni Association Board of Trustees. Led record-breaking fundraising as Class of 2013 President.</div></div>
+      <div class="cred-card"><div class="cred-number">2013</div><div class="cred-label">USNA Graduation</div><div class="cred-desc">Elected President of the Class of 2013. Varsity letter winner, Championship Sprint Football. Eagle Scout.</div></div>
+      <div class="cred-card"><div class="cred-number">2&times;</div><div class="cred-label">Combat Deployments</div><div class="cred-desc">Deployed twice in support of Operation Odyssey Lightning with HSC-22. Humanitarian aid and disaster-relief missions.</div></div>
+      <div class="cred-card"><div class="cred-number">116th</div><div class="cred-label">Congress</div><div class="cred-desc">Navy Legislative Affairs Fellowship &mdash; Defense Fellow for Senator Susan Collins (R-ME).</div></div>
+      <div class="cred-card"><div class="cred-number">5</div><div class="cred-label">NATO Allies</div><div class="cred-desc">U.S. spokesperson on a NATO working group with five primary allied nations at OPNAV.</div></div>
+      <div class="cred-card"><div class="cred-number">1st</div><div class="cred-label">NJOC Director</div><div class="cred-desc">Inaugural Director of the Naval Junior Officer Counsel &mdash; the Navy&rsquo;s first cross-designator JO organization.</div></div>
+      <div class="cred-card"><div class="cred-number">&#9733;</div><div class="cred-label">USNA Trustee</div><div class="cred-desc">Youngest-ever trustee on the USNA Alumni Association Board. Led record-breaking fundraising as Class President.</div></div>
     </div>
   </div>
 </section>
@@ -238,18 +336,18 @@
 <section id="service">
   <div class="container">
     <div class="section-label">Career</div>
-    <h2 class="section-title" style="margin-bottom:3rem;">Service &amp;<br><em>Leadership</em></h2>
+    <h2 class="section-title" style="margin-bottom:2rem;">Service &amp;<br><em>Leadership</em></h2>
     <div class="service-inner">
       <div class="timeline">
-        <div class="timeline-item"><div class="timeline-year">2013 &ndash; 2017</div><div class="timeline-title">Navy Helicopter Pilot</div><div class="timeline-org">Helicopter Sea Combat Squadron 22 (HSC-22)</div><div class="timeline-desc">Earned Wings of Gold. Deployed twice in support of Operation Odyssey Lightning. Served as Operations Officer, PAO, and Aircraft Division Officer.</div></div>
-        <div class="timeline-item"><div class="timeline-year">2019 &ndash; 2020</div><div class="timeline-title">Defense Fellow, U.S. Senate</div><div class="timeline-org">Office of Senator Susan Collins (R-ME) &middot; 116th Congress</div><div class="timeline-desc">Supported legislation, speeches, and correspondence on DoD priorities, veterans, and military families.</div></div>
-        <div class="timeline-item"><div class="timeline-year">2020 &ndash; 2022</div><div class="timeline-title">Strategist &amp; International Engagements Officer</div><div class="timeline-org">Office of the Chief of Naval Personnel</div><div class="timeline-desc">Senior-level engagements with U.S. allies. U.S. spokesperson on a NATO working group with five primary allied nations.</div></div>
+        <div class="timeline-item"><div class="timeline-year">2013 &ndash; 2017</div><div class="timeline-title">Navy Helicopter Pilot</div><div class="timeline-org">Helicopter Sea Combat Squadron 22 (HSC-22)</div><div class="timeline-desc">Earned Wings of Gold. Deployed twice in support of Operation Odyssey Lightning. Operations Officer, PAO, and Aircraft Division Officer.</div></div>
+        <div class="timeline-item"><div class="timeline-year">2019 &ndash; 2020</div><div class="timeline-title">Defense Fellow, U.S. Senate</div><div class="timeline-org">Office of Senator Susan Collins (R-ME) &middot; 116th Congress</div><div class="timeline-desc">Supported legislation and speeches on DoD priorities, veterans, and military families.</div></div>
+        <div class="timeline-item"><div class="timeline-year">2020 &ndash; 2022</div><div class="timeline-title">Strategist &amp; International Engagements Officer</div><div class="timeline-org">Office of the Chief of Naval Personnel</div><div class="timeline-desc">Senior-level engagements with U.S. allies. U.S. spokesperson on a NATO working group with five allied nations.</div></div>
         <div class="timeline-item"><div class="timeline-year">2021 &ndash; 2023</div><div class="timeline-title">Inaugural Director, NJOC</div><div class="timeline-org">Office of Naval Research / Chief of Naval Personnel</div><div class="timeline-desc">Founded the Navy&rsquo;s first cross-designator junior officer organization, endorsed by CNP and Chief of Naval Research.</div></div>
-        <div class="timeline-item"><div class="timeline-year">Present</div><div class="timeline-title">Advisor, National Commission on the Future of the Navy</div><div class="timeline-org">U.S. Congress / Department of Defense</div><div class="timeline-desc">Research, analysis, and recommendations on force structure, talent management, the defense industrial base, and long-term naval strategy.</div></div>
-        <div class="timeline-item"><div class="timeline-year">Present</div><div class="timeline-title">Founder &amp; CEO, EEI Strategic Advisors</div><div class="timeline-org">Washington, D.C. &middot; Rogers, Arkansas</div><div class="timeline-desc">Advising organizations on leadership, innovation, geopolitics, and emerging technologies. Building enduring public-private partnerships.</div></div>
+        <div class="timeline-item"><div class="timeline-year">Present</div><div class="timeline-title">Advisor, National Commission on the Future of the Navy</div><div class="timeline-org">U.S. Congress / Department of Defense</div><div class="timeline-desc">Research and recommendations on force structure, talent management, the defense industrial base, and long-term naval strategy.</div></div>
+        <div class="timeline-item"><div class="timeline-year">Present</div><div class="timeline-title">Founder &amp; CEO, EEI Strategic Advisors</div><div class="timeline-org">Washington, D.C. &middot; Rogers, Arkansas</div><div class="timeline-desc">Advising organizations on leadership, innovation, geopolitics, and emerging technologies.</div></div>
       </div>
       <div class="service-photos">
-        <div class="sp sp-tall"><img src="IMG_3740.JPG" alt="Navy Whites Ceremony"></div>
+        <div class="sp sp-tall"><img src="IMG_3740.JPG" alt="Navy Dress Whites Ceremony"></div>
         <div class="sp sp-short"><img src="IMG_2193.jpeg" alt="ONR Briefing"></div>
       </div>
     </div>
@@ -262,9 +360,9 @@
     <h2 class="section-title">A Life of<br><em>Service &amp; Impact</em></h2>
     <div class="gallery-grid">
       <div class="gallery-item"><img src="IMG_6274.JPG" style="object-position:center top;" alt="Flight Deck"><div class="gallery-caption">On the Flight Deck</div></div>
-      <div class="gallery-item"><img src="IMG_5905.JPG" alt="USNA Graduation"><div class="gallery-caption">Naval Academy Graduation</div></div>
+      <div class="gallery-item"><img src="IMG_5905.JPG" alt="USNA Graduation"><div class="gallery-caption">USNA Graduation</div></div>
       <div class="gallery-item"><img src="IMG_6275.JPG" alt="Navy Aviation"><div class="gallery-caption">Navy Aviation</div></div>
-      <div class="gallery-item"><img src="IMG_1039.jpg" alt="Capitol Hill"><div class="gallery-caption">Capitol Hill &mdash; Senate Fellowship</div></div>
+      <div class="gallery-item"><img src="IMG_1039.jpg" alt="Capitol Hill"><div class="gallery-caption">Senate Fellowship</div></div>
       <div class="gallery-item"><img src="IMG_4559.heic" alt="Service Leadership"><div class="gallery-caption">Service &amp; Leadership</div></div>
     </div>
   </div>
@@ -277,9 +375,9 @@
     <p class="eei-intro">EEI Strategic Advisors leverages cross-sector expertise across leadership, strategy, government affairs, national security, agriculture, and international relations to forge collaboration and translate national policy into local impact.</p>
     <div class="eei-grid">
       <div class="eei-card"><div class="eei-card-num">01</div><h3>Cross-Sector Collaboration</h3><p>Forging generational collaboration amongst companies, institutions, and organizations across industries and communities.</p></div>
-      <div class="eei-card"><div class="eei-card-num">02</div><h3>Strategic Growth</h3><p>Developing strategies that drive workforce development, infrastructure investment, and innovation-led growth in emerging sectors.</p></div>
-      <div class="eei-card"><div class="eei-card-num">03</div><h3>Community &amp; Economic Development</h3><p>Supporting initiatives that build resilient communities and sustainable economic opportunity &mdash; with a focus on rural America.</p></div>
-      <div class="eei-card"><div class="eei-card-num">04</div><h3>Policy Translation</h3><p>Translating national policy and federal funding opportunities into local impact &mdash; connecting organizations with the resources they need.</p></div>
+      <div class="eei-card"><div class="eei-card-num">02</div><h3>Strategic Growth</h3><p>Developing strategies that drive workforce development, infrastructure investment, and innovation-led growth.</p></div>
+      <div class="eei-card"><div class="eei-card-num">03</div><h3>Community &amp; Economic Development</h3><p>Supporting initiatives that build resilient communities and sustainable economic opportunity in rural America.</p></div>
+      <div class="eei-card"><div class="eei-card-num">04</div><h3>Policy Translation</h3><p>Translating national policy and federal funding into local impact &mdash; connecting organizations with the resources they need.</p></div>
     </div>
     <div class="partner-logos">
       <div class="partner-label">Partner Ecosystem Includes</div>
@@ -296,16 +394,16 @@
       <div>
         <div class="section-label">The Natural State</div>
         <h2 class="section-title">Rooted in<br><em>Arkansas</em></h2>
-        <p style="color:var(--text-mid);font-size:1.05rem;line-height:1.85;margin-bottom:1.5rem;">A native of Rogers, John-Rex&rsquo;s vision for EEI is inseparable from his commitment to his home state. His mission: make Arkansas the model for economic development in rural America &mdash; building a repeatable framework to address the critical challenges of our time.</p>
-        <p style="color:var(--text-mid);font-size:1.05rem;line-height:1.85;">Arkansas combines a unique ecosystem of logistics, agriculture, defense, and natural resources. John-Rex believes this foundation &mdash; paired with the state&rsquo;s values, pride, and community &mdash; positions Arkansas for transformative, generational growth.</p>
+        <p style="color:var(--text-mid);font-size:1rem;line-height:1.85;margin-bottom:1.25rem;">A native of Rogers, John-Rex&rsquo;s vision for EEI is inseparable from his commitment to his home state. His mission: make Arkansas the model for economic development in rural America &mdash; building a repeatable framework to address the critical challenges of our time.</p>
+        <p style="color:var(--text-mid);font-size:1rem;line-height:1.85;">Arkansas combines a unique ecosystem of logistics, agriculture, defense, and natural resources that positions the state for transformative, generational growth.</p>
       </div>
       <div>
-        <div class="section-label" style="margin-bottom:1.5rem;">Initial Focus Areas</div>
+        <div class="section-label" style="margin-bottom:1.25rem;">Initial Focus Areas</div>
         <div class="pillars">
           <div class="pillar"><div class="pillar-num">1</div><div class="pillar-content"><h4>Critical Infrastructure</h4><p>Power grid modernization, water systems, and essential infrastructure supporting community resilience.</p></div></div>
           <div class="pillar"><div class="pillar-num">2</div><div class="pillar-content"><h4>Workforce Development</h4><p>Education and upskilling pipelines, healthcare access, and childcare solutions to retain and attract talent.</p></div></div>
           <div class="pillar"><div class="pillar-num">3</div><div class="pillar-content"><h4>Agriculture, Supply Chain &amp; Defense</h4><p>Leveraging Arkansas&rsquo;s leading industries &mdash; Aerospace &amp; Defense, logistics, and natural resources.</p></div></div>
-          <div class="pillar"><div class="pillar-num">4</div><div class="pillar-content"><h4>Socio-Economic Opportunity</h4><p>Sustainable community strategy ensuring access to healthy food, clean water, and economic mobility.</p></div></div>
+          <div class="pillar"><div class="pillar-num">4</div><div class="pillar-content"><h4>Socio-Economic Opportunity</h4><p>Sustainable strategy ensuring access to healthy food, clean water, and economic mobility.</p></div></div>
         </div>
       </div>
     </div>
@@ -316,17 +414,17 @@
   <div class="container">
     <div class="section-label">Get in Touch</div>
     <h2 class="section-title">Ready to<br><em>Elevate Together?</em></h2>
-    <p class="contact-sub">Whether you&rsquo;re an organization seeking strategic counsel, a fellow leader interested in collaboration, or an Arkansas stakeholder ready to build something lasting &mdash; let&rsquo;s connect.</p>
+    <p class="contact-sub">Whether you&rsquo;re seeking strategic counsel, interested in collaboration, or an Arkansas stakeholder ready to build something lasting &mdash; let&rsquo;s connect.</p>
     <div class="contact-links">
-      <!-- <a href="mailto:johnrex@eeistrategicadvisors.com" class="contact-link primary">Send a Message</a> -->
-      <a href="https://www.linkedin.com/in/john-rex-spivey/" class="contact-link secondary">LinkedIn Profile</a>
+      <a href="mailto:johnrex@eeistrategicadvisors.com" class="contact-link primary">Send a Message</a>
+      <a href="https://linkedin.com" class="contact-link secondary">LinkedIn Profile</a>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="footer-logo">John-Rex Spivey &middot; EEI Strategic Advisors</div>
-  <div>Rogers, Arkansas &middot; Washington, D.C.</div>
+  <div>Rogers, AR &middot; Washington, D.C.</div>
   <div>&copy; 2025 EEI Strategic Advisors LLC</div>
 </footer>
 
